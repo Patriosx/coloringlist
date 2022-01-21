@@ -42,30 +42,38 @@ export function ResultContextProvider(props) {
     });
   }
   async function getUsers() {
-    const res = await axios("https://api.github.com/users");
-    const data = res.data;
-    let newArr = [];
-    data.forEach((element) => {
-      newArr = [...newArr, { data: element.login, id: "user_" + element.id }];
-    });
-    dispatch({
-      type: "GET_USERS",
-      payload: newArr,
-    });
+    try {
+      const res = await axios("https://api.github.com/users");
+      const data = res.data;
+      let newArr = [];
+      data.forEach((element) => {
+        newArr = [...newArr, { data: element.login, id: "user_" + element.id }];
+      });
+      dispatch({
+        type: "GET_USERS",
+        payload: newArr,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
   async function getCivilizationAOE2() {
-    const res = await axios(
-      "https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations"
-    );
-    const data = res.data.civilizations;
-    let newArr = [];
-    data.forEach((element) => {
-      newArr = [...newArr, { data: element.name, id: "civ_" + element.id }];
-    });
-    dispatch({
-      type: "GET_AOE2",
-      payload: newArr,
-    });
+    try {
+      const res = await axios(
+        "https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations"
+      );
+      const data = res.data.civilizations;
+      let newArr = [];
+      data.forEach((element) => {
+        newArr = [...newArr, { data: element.name, id: "civ_" + element.id }];
+      });
+      dispatch({
+        type: "GET_AOE2",
+        payload: newArr,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
