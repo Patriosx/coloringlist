@@ -1,0 +1,93 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+}
+
+a:hover {
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+li {
+  list-style: none;
+  margin: 1rem;
+}
+
+.navbar-container ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid black;
+  padding: 0;
+}
+
+.navbar-container a {
+  color: black;
+}
+
+.navbar-container a:hover {
+  border-bottom: 2px solid black;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.navbar-container .total-result {
+  background-color: red;
+  padding: 0.2rem;
+  border-radius: 20px;
+  border: 1px solid black;
+  margin-left: 0.2rem;
+}
+
+.showlist-container {
+  border: 1px solid black;
+  padding: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.showlist-container .data-container {
+  padding: 1rem;
+  margin: 0;
+}
+
+.showlist-container .data-container:hover {
+  color: white;
+}
+
+.title-container {
+  text-align: center;
+}
+
+.result-container {
+  padding: 0rem 3rem;
+  margin-bottom: 0.1rem;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.result-container h1 {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+/*# sourceMappingURL=app.css.map */
