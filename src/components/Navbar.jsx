@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react/cjs/react.development";
 import ResultContext from "../store/result-context";
 const Navbar = () => {
-  const ResultCtx = useContext(ResultContext);
+  const { totalResult } = useContext(ResultContext);
   return (
     <div className="navbar-container">
       <ul>
@@ -15,7 +15,7 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink to={"/result"}>Result</NavLink>
-          <span className="total-result">{ResultCtx.totalResult}</span>
+          <span className="total-result">{totalResult}</span>
         </li>
       </ul>
     </div>
