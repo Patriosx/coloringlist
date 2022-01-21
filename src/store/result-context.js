@@ -1,24 +1,25 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 import axios from "axios";
-
+import reducer from "./reducer";
 //devuelve un componente de React
-const ResultContext = createContext({
-  results: [],
-  totalResult: 0,
-  users: [],
-  AOE2: [],
-});
+export const ResultContext = createContext();
 //agregamos este componente común de React a este fichero par realizar acciones con los datos del contexto creado
 // tiene el trabajo de proveer este contexto a todos los componentes que necesitan los valores de este contexto
 export function ResultContextProvider(props) {
-  const [userResults, setUserResults] = useState([]);
-  const [users, setusers] = useState([]);
-  const [AOE2, setAOE2] = useState([]);
+  const initialState = {
+    results: [],
+    totalResult: 0,
+    users: [],
+    AOE2: [],
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const context = {
-    results: userResults,
-    totalResult: userResults.length,
-    users,
-    AOE2,
+    results: state.results,
+    totalResult: state.results.length,
+    users: state.users,
+    AOE2: state.AOE2,
     getUsers,
     getCivilizationAOE2,
     addToResults: addResultHandler,
@@ -26,15 +27,19 @@ export function ResultContextProvider(props) {
     isOnResult: itemIsResultHandler,
   };
   function addResultHandler(item) {
-    setUserResults((prev) => {
-      return prev.concat(item);
+    dispatch({
+      type: "ADD_TO_RESULTS",
+      payload: item,
     });
   }
   function itemIsResultHandler(id) {
-    return userResults.some((item) => item.id === id);
+    return state.results.some((item) => item.id === id);
   }
   function removeResultHandler(id) {
-    setUserResults(() => userResults.filter((item) => item.id !== id));
+    dispatch({
+      type: "DELETE_FROM_RESULTS",
+      payload: id,
+    });
   }
   async function getUsers() {
     const res = await axios("https://api.github.com/users");
@@ -43,7 +48,10 @@ export function ResultContextProvider(props) {
     data.forEach((element) => {
       newArr = [...newArr, { data: element.login, id: "user_" + element.id }];
     });
-    setusers(newArr);
+    dispatch({
+      type: "GET_USERS",
+      payload: newArr,
+    });
   }
   async function getCivilizationAOE2() {
     const res = await axios(
@@ -54,7 +62,10 @@ export function ResultContextProvider(props) {
     data.forEach((element) => {
       newArr = [...newArr, { data: element.name, id: "civ_" + element.id }];
     });
-    setAOE2(newArr);
+    dispatch({
+      type: "GET_AOE2",
+      payload: newArr,
+    });
   }
 
   return (
