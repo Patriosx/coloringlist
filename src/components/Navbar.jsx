@@ -14,6 +14,9 @@ const Navbar = () => {
           <NavLink to={"/AOE2"}>Age of Empire II</NavLink>
         </li>
         <li>
+          <NavLink to={"/location"}>Get Location</NavLink>
+        </li>
+        <li>
           <NavLink to={"/result"}>Result</NavLink>
           <span className="total-result">{totalResult}</span>
         </li>

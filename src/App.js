@@ -6,6 +6,7 @@ import ShowList from "./components/ShowList";
 import Title from "./components/Title";
 import Result from "./components/Result";
 import ResultContext from "./store/result-context";
+import GeoLoc from "./components/GeoLoc";
 
 function App() {
   // console.log("%c App rendered! ", "background: #222; color: #bada55");
@@ -20,7 +21,7 @@ function App() {
     initializingData();
   }, []);
   return (
-    <div>
+    <>
       <Navbar />
       <Routes>
         <Route
@@ -43,8 +44,12 @@ function App() {
           path="/result"
           element={[<Title title={"Results"} />, <Result />]}
         />
+        <Route
+          path="/location"
+          element={[<Title title={"Your current location"} />, <GeoLoc />]}
+        />
       </Routes>
-    </div>
+    </>
   );
 }
 
